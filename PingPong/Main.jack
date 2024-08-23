@@ -1,0 +1,13 @@
+class Main{
+    function void main(){
+        var Ball ball;
+
+        let ball = Ball.new(256,128,5,4,5);
+        do ball.draw();
+        do ball.run();
+
+        do ball.dispose();
+        
+        return;
+    }
+}

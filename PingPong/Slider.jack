@@ -1,0 +1,66 @@
+class Slider {
+
+    field int x1,y1,x2,y2;
+
+    constructor Slider new(int ax1, int ay1, int ax2, int ay2){
+        let x1 = ax1;
+        let y1 = ay1;
+        let x2 = ax2;
+        let y2 = ay2;
+        return this;
+    }
+
+    method int getx1(){
+        return x1;
+    }
+
+    method int getx2(){
+        return x2;
+    }
+
+    method int gety1(){
+        return y1;
+    }
+
+    method int gety2(){
+        return y2;
+    }
+
+    method void draw(){
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x1,y1,x2,y2);  //x1=506,y1=124,x2=512,y2=132
+        return;
+    }
+    
+    method void erase(int al, int bl, int ar, int br){
+        do Screen.setColor(false);
+        do Screen.drawRectangle(al,bl,ar,br);
+        return;
+    }
+
+    method void moveUp(int v){
+        if(~((y1 - v) < 16)){
+            do erase(x1,y1 - v,x2,y2);
+            let y1 = y1 - v;
+            let y2 = y2 - v;
+            do draw();
+        }
+        return;
+    }
+
+    method void moveDown(int v){
+        if(~((y2 + v) > 255)){
+            do erase(x1,y1,x2,y1 + v);
+            let y1 = y1 + v;
+            let y2 = y2 + v;
+            do draw();
+        }
+        return;
+    }
+
+    method void dispose(){
+        do Memory.deAlloc(this);
+        return;
+    }
+
+}
